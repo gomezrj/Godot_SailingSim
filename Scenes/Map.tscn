@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://dasdo2u0of2ts"]
+
+[ext_resource type="PackedScene" uid="uid://ciem7t4eo3idk" path="res://Scenes/Boat.tscn" id="1_s486e"]
+[ext_resource type="Curve" uid="uid://cwbdejisx54mr" path="res://Resources/Coefficient_curves/Aero_lift_coefficient_main.tres" id="2_etk83"]
+[ext_resource type="Curve" uid="uid://rfucjydl8c7q" path="res://Resources/Coefficient_curves/Aero_drag_coefficient_main.tres" id="3_qumfl"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_s486e"]
+transparency = 1
+albedo_color = Color(0, 0.890196, 1, 0.294118)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7yn8b"]
+material = SubResource("ORMMaterial3D_s486e")
+
+[node name="Map" type="Node3D"]
+
+[node name="Boat" parent="." instance=ExtResource("1_s486e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.14629, 0)
+mass = 13000.0
+gravity_scale = 9.8
+linear_damp = 0.1
+keel_area = 0.9
+rudder_area = 5.0
+yaw_damp = 1e+06
+pitch_damp = 2000.0
+roll_damp = 1000.0
+sail_stiffness = 1.0
+sail_damping = 7.0
+move_speed = 50000.0
+rotation_speed = 1e+07
+wind_speed = 30.0
+sails_rotation_speed = 20.0
+rudder_rotation_speed = 20.0
+hydro_lift_coefficient_keel = ExtResource("2_etk83")
+hydro_drag_coefficient_keel = ExtResource("3_qumfl")
+
+[node name="Water" type="MeshInstance3D" parent="."]
+transform = Transform3D(2299.27, 0, 0, 0, 2299.27, 0, 0, 0, 2299.27, 0, 0, 0)
+mesh = SubResource("PlaneMesh_7yn8b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.47172, 0.881748, 0, -0.881748, -0.47172, 165.747, 29.3223, -6.62871)
+light_color = Color(1, 0.79963, 0.7443, 1)
+light_energy = 3.329
+
+[node name="FrontCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.998569, 0.0534846, 0, -0.0534846, 0.998569, 5.62976, 26.197, 155.656)
+fov = 23.5
+
+[node name="SideCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.096558, -0.0532347, 0.993903, -3.39728e-09, 0.998569, 0.0534846, -0.995327, -0.00516437, 0.0964198, 126.126, 26.197, 9.06879)
+fov = 50.0
+
+[node name="TopCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.590296, 0.807187, 0, -0.807187, 0.590296, 0, 142.404, 99.5215)
+current = true
+fov = 60.0

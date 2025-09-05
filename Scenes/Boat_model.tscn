@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvqkgdn3kc82c"]
+
+[ext_resource type="PackedScene" uid="uid://b7qv5an70ko3i" path="res://Resources/Sailboat_lowpoly/Untitled.glb" id="1_ojjbq"]
+
+[node name="Boat_model" instance=ExtResource("1_ojjbq")]
